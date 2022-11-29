@@ -14,6 +14,12 @@ after_success:
   - docker build -t pacog/multi-nginx ./nginx
   - docker build -t pacog/server ./server
   - docker build -t pacog/worker ./worker
+# Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push pacog/multi-client
+  - docker push pacog/multi-nginx
+  - docker push pacog/multi-server
+  - docker push pacog/multi-worker
 
 
 
